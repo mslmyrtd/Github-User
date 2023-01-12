@@ -154,3 +154,14 @@ p {
   background: var(--clr-primary-8);
   color: var(--clr-primary-1);
 }
+/* section */
+.section {
+  padding: 1rem 0;
+  position: relative;
+}
+
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+}
