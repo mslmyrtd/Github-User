@@ -3,6 +3,7 @@ import mockFollowers from "./mockData/mockFollowers";
 import mockRepos from "./mockData/mockRepos";
 import mockUser from "./mockData/mockUser";
 import axios from "axios";
+import { IGithubUser } from "../types/context.types";
 
 const rootUrl = 'https://api.github.com';
 
@@ -10,7 +11,7 @@ interface InputProviderProps {
     children: React.ReactNode
 }
 interface GithubContextInterface {
-    githubUser: Object
+    githubUser: IGithubUser
     repos: Array<object>
     followers: Array<object>
 }
