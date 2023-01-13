@@ -3,7 +3,7 @@ import mockFollowers from "./mockData/mockFollowers";
 import mockRepos from "./mockData/mockRepos";
 import mockUser from "./mockData/mockUser";
 import axios from "axios";
-import { IGithubUser } from "../types/context.types";
+import { IGithubUser, IFollowers } from "../types/context.types";
 
 const rootUrl = 'https://api.github.com';
 
@@ -13,7 +13,7 @@ interface InputProviderProps {
 interface GithubContextInterface {
     githubUser: IGithubUser
     repos: Array<object>
-    followers: Array<object>
+    followers: IFollowers[]
 }
 const initialContext = {
     githubUser: mockUser,
@@ -21,7 +21,6 @@ const initialContext = {
     followers: mockFollowers
 }
 const GithubContext = createContext<GithubContextInterface>(initialContext);
-
 const GithubProvider = ({ children }: InputProviderProps) => {
     const [githubUser, setGithubUser] = useState(mockUser)
     const [repos, setRepos] = useState(mockRepos)
