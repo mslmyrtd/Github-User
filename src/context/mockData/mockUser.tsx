@@ -26,7 +26,7 @@ export default {
     location: 'Izmir',
     email: "mslmyrtd@gmail.com",
     hireable: "yes",
-    bio: 'Strong Man',
+    bio: 'Creator of this page',
     twitter_username: 'Mslm',
     public_repos: 47,
     public_gists: 0,
