@@ -12,3 +12,8 @@ export interface IGithubUser {
   location: string
   twitter_username: string
 }
+export interface IFollowers {
+  login: string
+  avatar_url: string
+  html_url: string
+}
