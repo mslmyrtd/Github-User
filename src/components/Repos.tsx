@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/context';
-import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
+import { Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 
 
 const Repos = () => {
@@ -22,7 +22,6 @@ const Repos = () => {
     //@ts-ignore
     return total
   }, {})
-  console.log(languages);
   const mostUsed = Object.values(languages).sort((a, b) => {
     return b.value - a.value
   }).slice(0, 5)
@@ -39,9 +38,12 @@ const Repos = () => {
     <Wrapper className='section-center'>
       {/* @ts-ignore */}
       <Pie3D data={mostUsed} />
-      <div></div>
+      {/* @ts-ignore */}
+      <Column3D data={mostUsed} />
       {/* @ts-ignore */}
       <Doughnut2D data={mostPopular} />
+      {/* @ts-ignore */}
+      <Bar3D data={mostPopular} />
     </Wrapper>
   </section>;
 
