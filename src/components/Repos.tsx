@@ -44,12 +44,15 @@ const Repos = () => {
     const { stargazers_count, name, forks } = item;
     //@ts-ignore
     total.stars[stargazers_count] = { label: name, value: stargazers_count }
+    //@ts-ignore
+    total.forks[forks] = { label: name, value: forks }
     return total;
   }, {
     stars: {},
     forks: {}
   })
   stars = Object.values(stars).slice(-5).reverse()
+  forks = Object.values(forks).slice(-5).reverse()
 
   return <section>
     <Wrapper className='section-center'>
@@ -60,7 +63,7 @@ const Repos = () => {
       {/* @ts-ignore */}
       <Doughnut2D data={mostPopular} />
       {/* @ts-ignore */}
-      <Bar3D data={mostPopular} />
+      <Bar3D data={forks} />
     </Wrapper>
   </section>;
 
