@@ -13,12 +13,12 @@
 - #### React.js
 - #### TypeScript
 - #### Axios library
+- #### AuthO
 - #### Fushion Chart
 - #### Styled-Component
 - #### React-İcons
 - #### Github-Api
- 
-
+- #### React Router Dom
 
 <details><summary><b>Installation Instructions</b></summary><br>
 
