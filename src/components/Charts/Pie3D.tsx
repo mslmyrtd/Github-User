@@ -1,7 +1,3 @@
-// STEP 1 - Include Dependencies
-// Include react
-import React from 'react'
-
 // Include the react-fusioncharts component
 import ReactFC from 'react-fusioncharts'
 
@@ -13,13 +9,11 @@ import Chart from 'fusioncharts/fusioncharts.charts'
 
 // Include the theme as fusion
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
-import { UsersListProps } from '../../types/type.types'
 
 // Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
 
 // STEP 2 - Chart Data
-
 // STEP 3 - Creating the JSON object to store the chart configurations
 
 // @ts-ignore
