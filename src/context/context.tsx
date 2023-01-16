@@ -28,6 +28,7 @@ const initialContext = {
     },
     searchGithubUser: Function
 }
+
 const GithubContext = createContext<GithubContextInterface>(initialContext);
 const GithubProvider = ({ children }: InputProviderProps) => {
     const [githubUser, setGithubUser] = useState(mockUser)
@@ -43,15 +44,14 @@ const GithubProvider = ({ children }: InputProviderProps) => {
         toggleError()
         const response = await axios(`${rootUrl}/users/${user}`).catch((err) => console.log(err)
         )
-        console.log(response);
         if (response) {
-            setGithubUser(response.data)
-        }
-        else {
-            toggleError(true, "there is no user with tahat username")
+            if (response.status === 200) {
+                setGithubUser(response.data)
+            } else {
+                toggleError(true, "there is no user with that username")
+            }
         }
     }
-
     //check rate
     const checkRequest = () => {
         axios(`${rootUrl}/rate_limit`).then(({ data }) => {
