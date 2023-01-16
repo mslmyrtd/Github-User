@@ -1,3 +1,5 @@
+import { items } from 'fusioncharts';
+import { totalmem } from 'os';
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/context';
@@ -34,12 +36,27 @@ const Repos = () => {
     return { ...item, value: item.stars }
   }).slice(0, 5)
 
+
+  //stars, forks
+  //@ts-ignore
+  let { stars, forks } = repos.reduce((total, item) => {
+    //@ts-ignore
+    const { stargazers_count, name, forks } = item;
+    //@ts-ignore
+    total.stars[stargazers_count] = { label: name, value: stargazers_count }
+    return total;
+  }, {
+    stars: {},
+    forks: {}
+  })
+  stars = Object.values(stars).slice(-5).reverse()
+
   return <section>
     <Wrapper className='section-center'>
       {/* @ts-ignore */}
       <Pie3D data={mostUsed} />
       {/* @ts-ignore */}
-      <Column3D data={mostUsed} />
+      <Column3D data={stars} />
       {/* @ts-ignore */}
       <Doughnut2D data={mostPopular} />
       {/* @ts-ignore */}
