@@ -4,22 +4,26 @@ import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { useGlobalContext } from '../context/context';
 const Search = () => {
+    const { requests, error } = useGlobalContext()
     const [user, setUser] = React.useState<string>("")
     //get things from glbal context
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        console.log(user);
     }
     return <section className='section'>
         <Wrapper className='section-center'>
+            {error.show && <ErrorWrapper>
+                <p>{error.msg}</p>
+            </ErrorWrapper>}
             <form onSubmit={handleSubmit}>
                 <div className="form-control">
                     <MdSearch />
                     <input type="text" placeholder='enter github user' value={user} onChange={(e) => setUser(e.target.value)} />
-                    <button type='submit'>search</button>
+                    {requests > 0 && <button type='submit'>search</button>}
+
                 </div>
             </form>
-            <h3>request:60/60</h3>
+            <h3>request:{requests}/60</h3>
         </Wrapper>
     </section>;
 };
