@@ -15,12 +15,16 @@ interface GithubContextInterface {
     repos: Array<object>
     followers: IFollowers[]
     requests: number
+    error: { show: boolean, msg: string }
 }
 const initialContext = {
     githubUser: mockUser,
     repos: mockRepos,
     followers: mockFollowers,
-    requests: 0
+    requests: 0,
+    error: {
+        show: false, msg: ""
+    }
 }
 const GithubContext = createContext<GithubContextInterface>(initialContext);
 const GithubProvider = ({ children }: InputProviderProps) => {
@@ -30,22 +34,27 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     //request loading
     const [requests, setRequests] = useState(0)
     const [loading, setLoading] = useState(false)
+    //error
+    const [error, setError] = useState({ show: false, msg: "" })
     //check rate
     const checkRequest = () => {
         axios(`${rootUrl}/rate_limit`).then(({ data }) => {
             let { rate: { remaining } } = data
             setRequests(remaining)
             if (remaining === 0) {
-                //throw an erro
+                toggleError(true, "sorry, you have exceeded your hourly rate limit")
             }
         }).catch((err) => console.log(err))
+    }
+    function toggleError(show: boolean = false, msg: string = "") {
+        setError({ show, msg })
     }
     //error
     useEffect(
         checkRequest
 
         , [])
-    return (<GithubContext.Provider value={{ githubUser, repos, followers, requests }}>{children}</GithubContext.Provider>)
+    return (<GithubContext.Provider value={{ githubUser, repos, followers, requests, error }}>{children}</GithubContext.Provider>)
 }
 const useGlobalContext = () => {
     return useContext(GithubContext)
