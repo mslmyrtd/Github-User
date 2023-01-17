@@ -16,10 +16,10 @@ const Repos = () => {
     //@ts-ignore
     if (!total[language]) {
       //@ts-ignore
-      total[language] = { label: language, value: 1, starts: stargazers_count }
+      total[language] = { label: language, value: 1, stars: stargazers_count }
     } else {
       //@ts-ignore
-      total[language] = { ...total[language], value: total[language].value + 1, starts: total[language].stars + stargazers_count }
+      total[language] = { ...total[language], value: total[language].value + 1, stars: total[language].stars + stargazers_count }
     }
     //@ts-ignore
     return total
@@ -35,7 +35,6 @@ const Repos = () => {
   }).map((item) => {
     return { ...item, value: item.stars }
   }).slice(0, 5)
-
 
   //stars, forks
   //@ts-ignore
