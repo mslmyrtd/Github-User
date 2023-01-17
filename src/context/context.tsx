@@ -38,7 +38,7 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     const [followers, setFollowers] = useState(mockFollowers)
     //request loading
     const [requests, setRequests] = useState(0)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     //error
     const [error, setError] = useState({ show: false, msg: "" })
 
@@ -49,8 +49,15 @@ const GithubProvider = ({ children }: InputProviderProps) => {
         )
         if (response) {
             if (response.status === 200) {
+                console.log("basarılı")
                 setGithubUser(response.data)
+                const { login, followers_url } = response.data
+                //repos
+                axios(`${rootUrl}/users/${login}/repos?per_page=100`).then((res) => setRepos(res.data))
+                //followers
+                axios(`${followers_url}?per_page=100`).then((res: any) => setFollowers(res.data))
             } else {
+                console.log("error");
                 toggleError(true, "there is no user with that username")
             }
             checkRequest()
