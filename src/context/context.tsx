@@ -17,6 +17,7 @@ interface GithubContextInterface {
     requests: number
     error: { show: boolean, msg: string }
     searchGithubUser: Function
+    isLoading: boolean
 }
 const initialContext = {
     githubUser: mockUser,
@@ -26,7 +27,8 @@ const initialContext = {
     error: {
         show: false, msg: ""
     },
-    searchGithubUser: Function
+    searchGithubUser: Function,
+    isLoading: false
 }
 
 const GithubContext = createContext<GithubContextInterface>(initialContext);
@@ -36,12 +38,13 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     const [followers, setFollowers] = useState(mockFollowers)
     //request loading
     const [requests, setRequests] = useState(0)
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     //error
     const [error, setError] = useState({ show: false, msg: "" })
 
     const searchGithubUser = async (user: string): Promise<any> => {
         toggleError()
+        setIsLoading(true)
         const response = await axios(`${rootUrl}/users/${user}`).catch((err) => console.log(err)
         )
         if (response) {
@@ -50,6 +53,8 @@ const GithubProvider = ({ children }: InputProviderProps) => {
             } else {
                 toggleError(true, "there is no user with that username")
             }
+            checkRequest()
+            setIsLoading(false)
         }
     }
     //check rate
@@ -70,7 +75,7 @@ const GithubProvider = ({ children }: InputProviderProps) => {
         checkRequest
 
         , [])
-    return (<GithubContext.Provider value={{ githubUser, repos, followers, requests, error, searchGithubUser }}>{children}</GithubContext.Provider>)
+    return (<GithubContext.Provider value={{ githubUser, repos, followers, requests, error, searchGithubUser, isLoading }}>{children}</GithubContext.Provider>)
 }
 const useGlobalContext = () => {
     return useContext(GithubContext)
