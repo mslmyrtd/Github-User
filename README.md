@@ -20,6 +20,18 @@
 - #### Github-Api
 - #### React Router Dom
 
+<details><summary><b>Github API</b></summary><br>
+
+- [Root Endpoint](https://api.github.com)
+- [Get User](https://api.github.com/users/wesbos)
+- [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
+- [Followers](https://api.github.com/users/john-smilga/followers)
+- [Rate Limit](https://api.github.com/rate_limit)
+
+  For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
+
+</details>
+
 <details><summary><b>Installation Instructions</b></summary><br>
 
 <summary>You must have the Node.js and npm  installed before this steps.For more[Node.js](https://nodejs.org/en/download/) </summary><br/>
