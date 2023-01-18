@@ -1,19 +1,13 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Navigate, } from "react-router-dom"
-
-interface InputProviderProps {
-    children: React.ReactNode
-}
+import { Navigate, Outlet } from "react-router-dom"
 
 
-const PrivateRoute = ({ children }: InputProviderProps): any => {
+const PrivateRoute = () => {
     const { isAuthenticated, user } = useAuth0();
     const isUser = isAuthenticated && user
-    if (!isUser) {
-        return <Navigate to="/login" />
-    }
-    return children
+
+    return isUser ? <Outlet /> : <Navigate to="/login" />
 }
 
 export default PrivateRoute
