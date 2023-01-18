@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import { GithubProvider } from './context/context'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <GithubProvider>
-      <App />
-    </GithubProvider>
+    <Auth0Provider
+      domain="dev-1ryx8xldxiclf78v.us.auth0.com"
+      clientId="dHeGUBu0awR4XyTRbE7288yNdcxRErrR"
+      redirectUri={window.location.origin}
+    >
+      <GithubProvider>
+        <App />
+      </GithubProvider>
+    </Auth0Provider>,
   </React.StrictMode>
 )
 
