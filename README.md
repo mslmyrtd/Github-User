@@ -79,7 +79,7 @@ Graphql routes starts with /graphql
 
 <details><summary><b>Deployment </b></summary><br>
 
-Deployed at Heroku @ <br>
+Deployed at Netlify @ <br>
 Graphql queries can be done at @
 
 Check collection with Postman : <br>
@@ -87,8 +87,36 @@ Check collection with Postman : <br>
 <p  align="left">
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/23b635b4e7b2192c870b)
+[Netlify](https://www.netlify.com/)
+
+## Additional Info
+
+#### Redirects with react-router-dom
+
+In order for routing to work on netlify, redirects was added to the public folder
+
+- \_redirects file in public
+
+```
+
+/*    /index.html   200
+
+```
+
+[Redirects Blog Post](https://dev.to/dance2die/page-not-found-on-netlify-with-react-router-58mc)
+
+#### Warnings and create-react-app
+
+package.json
+
+```js
+"build": "CI= react-scripts build",
+```
+
+[create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
 
 </p>
+  
 </details>
 <details><summary><b>Testing </b></summary><br>
 
