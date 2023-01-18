@@ -19,7 +19,7 @@
 - #### React-İcons
 - #### Github-Api
 - #### React Router Dom
-<details><summary><b>Project Dsscription</b></summary><br>
+<details><summary><b>Project Description</b></summary><br>
   <p>Hello everybody,
     in this project, i will build an app that allows the visitor to search Github users and display some useful info about the Github user, like the amount of repos list of followers, most star repo and etc. 
   </p>
