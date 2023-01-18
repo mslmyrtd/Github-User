@@ -1,5 +1,3 @@
-import { items } from 'fusioncharts';
-import { totalmem } from 'os';
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/context';
