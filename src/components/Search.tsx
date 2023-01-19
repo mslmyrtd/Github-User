@@ -7,7 +7,7 @@ const Search = () => {
   const { requests, error, searchGithubUser, isLoading } = useGlobalContext()
   const [user, setUser] = React.useState<string>("")
   //get things from glbal context
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     if (user) {
       searchGithubUser(user)

@@ -3,22 +3,10 @@ import mockFollowers from './mockData/mockFollowers'
 import mockRepos from './mockData/mockRepos'
 import mockUser from './mockData/mockUser'
 import axios from 'axios'
-import { IGithubUser, IFollowers } from '../types/context.types'
+import { InputProviderProps, GithubContextInterface } from '../types/context.types'
 
 const rootUrl = 'https://api.github.com'
 
-interface InputProviderProps {
-    children: React.ReactNode
-}
-interface GithubContextInterface {
-    githubUser: IGithubUser
-    repos: Array<object>
-    followers: IFollowers[]
-    requests: number
-    error: { show: boolean; msg: string }
-    searchGithubUser: Function
-    isLoading: boolean
-}
 const initialContext = {
     githubUser: mockUser,
     repos: mockRepos,
@@ -38,8 +26,8 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     const [repos, setRepos] = useState(mockRepos)
     const [followers, setFollowers] = useState(mockFollowers)
     //request loading
-    const [requests, setRequests] = useState(0)
-    const [isLoading, setIsLoading] = useState(false)
+    const [requests, setRequests] = useState<number>(0)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     //error
     const [error, setError] = useState({ show: false, msg: '' })
 
@@ -93,7 +81,6 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     //error
     useEffect(
         checkRequest,
-
         []
     )
     return (

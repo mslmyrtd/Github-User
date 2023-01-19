@@ -17,3 +17,15 @@ export interface IFollowers {
   avatar_url: string
   html_url: string
 }
+export interface InputProviderProps {
+  children: React.ReactNode
+}
+export interface GithubContextInterface {
+  githubUser: IGithubUser
+  repos: Array<object>
+  followers: IFollowers[]
+  requests: number
+  error: { show: boolean; msg: string }
+  searchGithubUser: Function
+  isLoading: boolean
+}
