@@ -44,7 +44,7 @@
 
 ```
 
-$ git clone https://github.com/mslmyrtd/SmartPulse.git
+$ git clone https://github.com/mslmyrtd/Github-User.git
 
 $ cd SmartPulse
 
@@ -146,7 +146,7 @@ $yarn test
 Contributions, issues and feature requests are welcome!
 Feel free to check issues page.
 
-Fork it (https://github.com/mslmyrtd/SmartPulse/fork) <br>
+Fork it (https://github.com/mslmyrtd/Github-User/fork) <br>
 Create your working branch (git checkout -b [choose-a-name]) <br>
 Commit your changes (git commit-m "commit") <br>
 Push to the branch (git push origin [chosen-name]) <br>
