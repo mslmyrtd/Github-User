@@ -83,7 +83,7 @@ Graphql routes starts with /graphql
 
 <details><summary><b>Deployment </b></summary><br>
 
-Deployed at Netlify @ <br>
+Deployed at Netlify @ <br> https://react-github-usersapp.netlify.app/
 Graphql queries can be done at @
 
 Check collection with Postman : <br>
