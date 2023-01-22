@@ -2,10 +2,15 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import mockFollowers from './mockData/mockFollowers'
 import mockRepos from './mockData/mockRepos'
 import mockUser from './mockData/mockUser'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { InputProviderProps, GithubContextInterface } from '../types/context.types'
 
 const rootUrl = 'https://api.github.com'
+interface ErrorType {
+    response: {
+        data: Record<string, unknown>
+    }
+}
 
 const initialContext = {
     githubUser: mockUser,
@@ -19,7 +24,6 @@ const initialContext = {
     searchGithubUser: Function,
     isLoading: false,
 }
-
 const GithubContext = createContext<GithubContextInterface>(initialContext)
 const GithubProvider = ({ children }: InputProviderProps) => {
     const [githubUser, setGithubUser] = useState(mockUser)
@@ -34,11 +38,9 @@ const GithubProvider = ({ children }: InputProviderProps) => {
     const searchGithubUser = async (user: string): Promise<any> => {
         toggleError()
         setIsLoading(true)
-        const response = await axios(`${rootUrl}/users/${user}`).catch((err) =>
-            console.log(err)
-        )
-        if (response) {
-            if (response.status === 200) {
+        try {
+            const response: AxiosResponse = await axios(`${rootUrl}/users/${user}`)
+            if (response?.status === 200) {
                 setGithubUser(response.data)
                 const { login, followers_url } = response.data
                 await Promise.allSettled([
@@ -53,13 +55,20 @@ const GithubProvider = ({ children }: InputProviderProps) => {
                     if (followers.status === status) {
                         setFollowers(followers.value.data);
                     }
-                }).catch(err => console.log(err))
-            } else {
-                toggleError(true, 'there is no user with that username')
+                }).catch(err => console.log(err, 'Promise resolve error'))
             }
-            checkRequest()
-            setIsLoading(false)
+        } catch (error: any) {
+            if (error?.response?.data?.message === 'Not Found') toggleError(true, 'there is no user with that username')
+            else toggleError(true, error?.response?.data?.message)
+
         }
+        //   else {
+        //             console.log('elşse')
+        //             toggleError(true, 'there is no user with that username')
+        //         }
+        checkRequest()
+        setIsLoading(false)
+
     }
     //check rate
     const checkRequest = () => {
